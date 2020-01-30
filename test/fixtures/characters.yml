@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  maximum_speed: 1
+  regular_speed: 1
+  race_speed: 1
+  no_speed: 1
+
+two:
+  name: MyString
+  maximum_speed: 1
+  regular_speed: 1
+  race_speed: 1
+  no_speed: 1
