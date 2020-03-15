@@ -1,7 +1,13 @@
 // var 変数の宣言(letと違い関数を定義することも可能)
 // fanction 関数の宣言 fanction 関数名(引数)
+// processResults オプションで API Response を受信した後の処理
+// templateResult, templateSelection オプションで見た目(HTML)の設定
+// ajax オプション内で設定
+// url, data オプションで API Request に関する設定
+let characters = [];
 $(document).ready(function() {
-  $(".js-data-example-ajax").select2({
+  let characterSelect = $(".js-data-example-ajax")
+  characterSelect.select2({
     ajax: {
       url:'/api/characters',
       dataType: 'json',
@@ -10,92 +16,42 @@ $(document).ready(function() {
         return {　q: params.term　};
       },
       processResults: function (data, params) {
-        console.log(data)
-        return { results: $.map(data, function(obj) {
-          console.log(obj)
+        console.log(data);
+        console.log(params);
+
+        characters = data.characters;
+        return { results: $.map(data.characters, function(obj) {
+            console.log(data.characters.name);
             return { id: obj.id, text: obj.name };
           })
         };
       }
     },
-    theme: "bootstrap",
-    width: "100%",
+    width: "30%",
     placeholder: "ポケモン名",
   });
-  // $('.js-example-basic-multiple').select2();
-  // $('.js-data-example-ajax').select2({
-  //   ajax: {
-  //     url: "/api/characters",
-  //     dataType: 'json',
-  //     data: function (params) {
-  //       // params.termに、選択ボックスで入力したキーワードが渡ってくる
-  //       // それをqパラメータに渡す
-  //       return {
-  //         q: params.term, // search term
-  //         page: params.page
-  //       };
-  //     },
-      
-  //     processResults: function (data, params) {
-  //       // dataにレスポンスのJSONが渡ってくる
-  //       // parse the results into the format expected by Select2
-  //       // since we are using custom formatting functions we do not need to
-  //       // alter the remote JSON data, except to indicate that infinite
-  //       // scrolling can be used
-  //       params.page = params.page || 1;
-  
-  //       return {
-  //         results: data.items,
-  //         pagination: {
-  //           more: (params.page * 30) < data.total_count
-  //         }
-  //       };
-  //     },
-  //     cache: true
-  //   },
-  //   placeholder: 'Search for a repository',
-  //   minimumInputLength: 1,
-  //   templateResult: formatRepo,
-  //   templateSelection: formatRepoSelection
-  // });
-  
-  // function formatRepo (repo) {
-  //   if (repo.loading) {
-  //     console.log(repo);
-  //     let characters = JSON.parse(repo);
-  //     console.log(characters);
-  //     return characters;
-  //   };
-  //   // JSON.parse(repo, (key, value) => {
-  //   //   console.log(characters.name);
-  //   //   if (key === 'name') return value;
-  //   // });
-    
-  //   var $container = $(
-  //     "<div class='select2-result-repository clearfix'>" +
-  //       "<div class='select2-result-repository__avatar'><img src='" + repo.owner.avatar_url + "' /></div>" +
-  //       "<div class='select2-result-repository__meta'>" +
-  //         "<div class='select2-result-repository__title'></div>" +
-  //         "<div class='select2-result-repository__description'></div>" +
-  //         "<div class='select2-result-repository__statistics'>" +
-  //           "<div class='select2-result-repository__forks'><i class='fa fa-flash'></i> </div>" +
-  //           "<div class='select2-result-repository__stargazers'><i class='fa fa-star'></i> </div>" +
-  //           "<div class='select2-result-repository__watchers'><i class='fa fa-eye'></i> </div>" +
-  //         "</div>" +
-  //       "</div>" +
-  //     "</div>"
-  //   );
-  
-  //   $container.find(".select2-result-repository__title").text(repo.full_name);
-  //   $container.find(".select2-result-repository__description").text(repo.description);
-  //   $container.find(".select2-result-repository__forks").append(repo.forks_count + " Forks");
-  //   $container.find(".select2-result-repository__stargazers").append(repo.stargazers_count + " Stars");
-  //   $container.find(".select2-result-repository__watchers").append(repo.watchers_count + " Watchers");
-  
-  //   return $container;
-  // }
-  
-  // function formatRepoSelection (repo) {
-  //   return repo.full_name || repo.text;
-  // }
+  characterSelect.on("change", function (e) {
+    console.log("select2:open", e.target.value);
+    let id = Number(e.target.value);
+    let characterId = characters.find(c => c.id === id);
+    console.log(characterId);
+    $('.character_race_speed').val(characterId.race_speed);
+  });
+  characterSelect.on("change", function (e) {
+    console.log("select2:open", e.target.value);
+    let id = Number(e.target.value);
+    let characterId = characters.find(c => c.id === id);
+    console.log(characterId);
+    $('.character_race_speed').val(characterId.race_speed);
+  });
+
+  characterSelect.on("change", function (e) {
+    var race_value = Number($("#race_value")[0].value)
+    var individual_value = Number($("#iv0")[0].value)
+    var effort_value = Number($("#Effort_value")[0].value)
+    var correction = Number($("#nature0")[0].value)
+    let speed_answer = ((race_value + individual_value /2 + effort_value /8)+5) * correction
+    let speed = Math.floor(speed_answer);
+    $('#speed_value').val(speed);
+  });
 });

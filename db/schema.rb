@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_01_16_120708) do
+ActiveRecord::Schema.define(version: 2020_02_21_164213) do
 
   create_table "characters", force: :cascade do |t|
     t.string "name"
@@ -18,6 +18,12 @@ ActiveRecord::Schema.define(version: 2020_01_16_120708) do
     t.integer "regular_speed"
     t.integer "race_speed"
     t.integer "no_speed"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "speeds", force: :cascade do |t|
+    t.integer "individual_value"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

@@ -3,12 +3,17 @@
   <div class="myself_container">
     <div class="search_foram">
       <%= form_tag(pokemon_speed_path, method: :get, enforce_utf8: false, class: "name_search_form") do %>
-        <button type="submit" class="button1"><i class="fas fa-search"></i></button>
+        <div>
+          <select class="js-data-example-ajax" style="width: 100%"></select>
+        </div>
+        <div>
+          種族値：<input type="text" name="race_speed" class="character_race_speed" id="race_value">
+        </div>
+        個体値：<select id="iv0" tabindex="2"><option value="31" selected="selected">31</option><option value="30">30</option><option value="29">29</option><option value="28">28</option><option value="27">27</option><option value="26">26</option><option value="25">25</option><option value="24">24</option><option value="23">23</option><option value="22">22</option><option value="21">21</option><option value="20">20</option><option value="19">19</option><option value="18">18</option><option value="17">17</option><option value="16">16</option><option value="15">15</option><option value="14">14</option><option value="13">13</option><option value="12">12</option><option value="11">11</option><option value="10">10</option><option value="9">9</option><option value="8">8</option><option value="7">7</option><option value="6">6</option><option value="5">5</option><option value="4">4</option><option value="3">3</option><option value="2">2</option><option value="1">1</option><option value="0">0</option></select>
+        努力値：<input _ngcontent-rmu-c3="" id="Effort_value"class="number digits-3 ng-valid ng-dirty ng-touched" max="252" min="0" step="4" type="number" value = "252">
+        性格補正値：<select id="nature0" tabindex="3"><option value="1.1" selected="selected">1.1倍</option><option value="1">1.0倍</option><option value="0.9">0.9倍</option></select>
+        実数値：<input type="text" id="speed_value">
       <% end %>
     </div>
   <div>
 <div>
-<p>Find me in app/views/speed/home.html.erb</p>
-<div>
-  <select class="js-data-example-ajax" style="width: 100%"></select>
-</div>
