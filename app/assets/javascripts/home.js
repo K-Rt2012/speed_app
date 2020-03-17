@@ -5,6 +5,11 @@
 // ajax オプション内で設定
 // url, data オプションで API Request に関する設定
 let characters = [];
+// var race_value = Number($("#race_value")[0].value)
+// var individual_value = Number($("#iv0")[0].value)
+// var effort_value = Number($("#Effort_value")[0].value)
+// var correction = Number($("#nature0")[0].value)
+
 $(document).ready(function() {
   let characterSelect = $(".js-data-example-ajax")
   characterSelect.select2({
@@ -30,28 +35,53 @@ $(document).ready(function() {
     width: "30%",
     placeholder: "ポケモン名",
   });
-  characterSelect.on("change", function (e) {
-    console.log("select2:open", e.target.value);
-    let id = Number(e.target.value);
-    let characterId = characters.find(c => c.id === id);
-    console.log(characterId);
-    $('.character_race_speed').val(characterId.race_speed);
-  });
-  characterSelect.on("change", function (e) {
-    console.log("select2:open", e.target.value);
-    let id = Number(e.target.value);
-    let characterId = characters.find(c => c.id === id);
-    console.log(characterId);
-    $('.character_race_speed').val(characterId.race_speed);
-  });
-
-  characterSelect.on("change", function (e) {
     var race_value = Number($("#race_value")[0].value)
     var individual_value = Number($("#iv0")[0].value)
     var effort_value = Number($("#Effort_value")[0].value)
     var correction = Number($("#nature0")[0].value)
     let speed_answer = ((race_value + individual_value /2 + effort_value /8)+5) * correction
     let speed = Math.floor(speed_answer);
+
+  characterSelect.on("change", function (e) {
+    console.log("select2:open", e.target.value);
+    let id = Number(e.target.value);
+    let characterId = characters.find(c => c.id === id);
+    console.log(characterId);
+    $('.character_race_speed').val(characterId.race_speed);
+  });
+  characterSelect.on("change", function (e) {
+    console.log("select2:open", e.target.value);
+    let id = Number(e.target.value);
+    let characterId = characters.find(c => c.id === id);
+    console.log(characterId);
+    $('.character_race_speed').val(characterId.race_speed);
+  });
+  characterSelect.on("change", function (e) {
+    race_value = Number($("#race_value")[0].value)
+    $('#race_value').val(race_value);
+    speed_answer = ((race_value + individual_value /2 + effort_value /8)+5) * correction
+    speed = Math.floor(speed_answer);
+    $('#speed_value').val(speed);
+  });
+  characterSelect.on("change", function (e) {
+    effort_value = Number($("#Effort_value")[0].value)
+    $('#Effort_value').val(effort_value);
+    speed_answer = ((race_value + individual_value /2 + effort_value /8)+5) * correction
+    speed = Math.floor(speed_answer);
+    $('#speed_value').val(speed);
+  });
+
+  characterSelect.on("change", function (e) {
+    individual_value = Number($("#iv0")[0].value)
+    $('#iv0').val(individual_value);
+    speed_answer = ((race_value + individual_value /2 + effort_value /8)+5) * correction
+    speed = Math.floor(speed_answer);
+    $('#speed_value').val(speed);
+  });
+
+  characterSelect.on("change", function (e) {
+    speed_answer = ((race_value + individual_value /2 + effort_value /8)+5) * correction
+    speed = Math.floor(speed_answer);
     $('#speed_value').val(speed);
   });
 });
