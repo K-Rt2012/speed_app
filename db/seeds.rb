@@ -30,12 +30,12 @@ require 'csv'
 #   p answer
 # end
 # 
-answer = 0
-(1..50000).each do |k|
-  if k % 3 == 0
-    answer = k + answer
-  elsif k.to_s.include?("3")
-    answer = k + answer
+range = 1..12
+range.each do |number|
+  g = 1
+
+  while g > number
+    g += 1
+    1/g + 
   end
 end
-p answer
